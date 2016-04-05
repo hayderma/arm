@@ -1,8 +1,4 @@
-/******************************************************************************
-* @file hello_world.s
-* @brief Simple hello world example using printf
-* @author Christopher D. McMurrough
-******************************************************************************/
+
  
     .global main
     .func main
