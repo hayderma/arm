@@ -45,6 +45,15 @@ _scanf:
 _add:
 	add R1,R1,R2     @adding
 	MOV PC,LR
+_subtract:
+	sub R1,R1,R2     @subtracting
+	MOV PC,LR
+_multiply:
+	mul R1,R1,R2     @multiplying
+	MOV PC,LR
+_M:
+	cmp R1,R2
+	MOVLT R1,R2      @if R2 > R1 , then move R2 to R1 for printing
 
 _exit:   
 	MOV R7, #1          @ terminate syscall, 1
