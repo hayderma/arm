@@ -13,7 +13,7 @@ main:
     MOV R2,#10
     LDR R0,=print_str   @ store string address in R0
     
-     BL  _prompt             @ branch to prompt procedure with return
+     
     BL  _scanf              @ branch to scanf procedure with return
     MOV R1, R0              @ move return value R0 to argument register R1
   
@@ -24,10 +24,10 @@ main:
 _scanf:
     MOV R4, LR              @ store LR since scanf call overwrites
     SUB SP, SP, #4          @ make room on stack
-    LDR R0, =format_str     @ R0 contains address of format string
+    
     MOV R1, SP              @ move SP to R1 to store entry on stack
     BL scanf                @ call scanf
-    LDR R0, [SP]            @ load value at SP into R0
+    LDR R1, [SP]            @ load value at SP into R0
     ADD SP, SP, #4          @ restore the stack pointer
     MOV PC, R4              @ return
 
