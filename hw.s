@@ -11,7 +11,7 @@ main:
      BL  _prompt             @ branch to prompt procedure with return
     BL  _scanf              @ branch to scanf procedure with return
     MOV R1, R0              @ move return value R0 to argument register R1
-    BL  _printf 
+  
     _prompt:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -20,12 +20,7 @@ main:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
        
-_printf:
-    MOV R4, LR              @ store LR since printf call overwrites
-    LDR R0, =printf_str     @ R0 contains formatted string address
-    MOV R1, R1              @ R1 contains printf argument (redundant line)
-    BL printf               @ call printf
-    MOV PC, R4              @ return
+
     
 _scanf:
     MOV R4, LR              @ store LR since scanf call overwrites
@@ -37,10 +32,7 @@ _scanf:
     ADD SP, SP, #4          @ restore the stack pointer
     MOV PC, R4              @ return
 
-.data
-format_str:     .asciz      "%d"
-prompt_str:     .asciz      "Type a number and press enter: "
-printf_str:     .asciz      "The number entered was: %d\n
+
     
     
     
