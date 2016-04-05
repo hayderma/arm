@@ -44,7 +44,7 @@ _scanf:
     B   _exit           @ branch to exit procedure with no return
    
 _add:
-	add R1,R1,R2
+	add R1,R1,R2     @adding
 	MOV PC,LR
 
 _exit:   
