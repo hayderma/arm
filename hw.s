@@ -35,7 +35,7 @@ main:
 
     
 _scanf:
-    MOV R4, LR              @ store LR since scanf call overwrites
+    MOV R4, LR              @ store LR 
     SUB SP, SP, #4          @ make room on stack
     
     MOV R1, SP              @ move SP to R1 to store entry on stack
