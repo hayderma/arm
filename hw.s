@@ -24,13 +24,13 @@ main:
     MOV R1, R0              @ move return value R0 to argument register R1
   
     
-   CMP R4, '+'		@ R4 is where the operation is saved from scanf
-   BEQ _add		@ compare R4 and call related procedure
-   CMP R4, '-'
+   CMP R3, '+'		@ R3 is where the operation is saved from scanf
+   BEQ _add		@ compare R3 and call related procedure
+   CMP R3, '-'
    BEQ _subtract
-   CMP R4, '*'
+   CMP R3, '*'
    BEQ _multiply
-   CMP R4, 'M'
+   CMP R3, 'M'
    BEQ _M
 
     
