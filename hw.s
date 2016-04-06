@@ -24,7 +24,14 @@ main:
     MOV R1, R0              @ move return value R0 to argument register R1
   
     
-       
+   CMP R4, '+'
+   BEQ _add
+   CMP R4, '-'
+   BEQ _subtract
+   CMP R4, '*'
+   BEQ _multiply
+   CMP R4, 'M'
+   BEQ _M
 
     
 _scanf:
