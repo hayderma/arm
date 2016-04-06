@@ -84,4 +84,5 @@ _exit:
 	SWI 0               @ execute syscall
 
 .data
+read_char:      .ascii      " "
 print_str:  .asciz "The Result is : %d\n"
