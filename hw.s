@@ -24,16 +24,16 @@ main:
     MOV R1, R0              @ move return value R0 to argument register R1
   
     
-   CMP R5, '+'		@ R5 is where the operation is saved from scanf
+   CMP R5,#'+'		@ R5 is where the operation is saved from scanf
    BL _add		@ compare R5 and call related procedure
    MOV R1,R0		@then after any procedure call, move R0 to R1 for printing
-   CMP R5, '-'
+   CMP R5, #'-'
    BL _subtract
    MOV R1,R0
-   CMP R5, '*'
+   CMP R5, #'*'
    BL _multiply
    MOV R1,R0
-   CMP R5, 'M'
+   CMP R5, #'M'
    BL _M
    MOV R1,R0
 
