@@ -17,7 +17,7 @@ main:
     LDR R0,=print_str   @ store string address in R0
     
      
-   @ BL  _scanf              @ branch to scanf procedure with return
+  
     MOV R1, R0              @ move return value R0 to argument register R1
   
     
