@@ -13,7 +13,7 @@ main:
   MOV R4,R0    @ Fist input number
   BL _getchar  
   MOV R5,R0	@Operation char
-  BL _scan
+  BL _scanf
   MOV R6,R0	@Second input number
   
    
