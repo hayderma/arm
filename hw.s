@@ -10,30 +10,30 @@
    
 main:
   BL _scanf       
-  MOV R4,R0    @ Fist input number
+  MOV R1,R0    @ Fist input number
   BL _getchar  
-  MOV R5,R0	@Operation char
+  MOV R2,R0	@Operation char
   BL _scanf
-  MOV R6,R0	@Second input number
+  MOV R3,R0	@Second input number
   
    
     LDR R0,=print_str   @ store string address in R0
     
      
   
-    MOV R1, R0              @ move return value R0 to argument register R1
+    
   
     
-   CMP R5,#'+'		@ R5 is where the operation is saved from scanf
+   CMP R2,#'+'		@ R5 is where the operation is saved from scanf
    BL _add		@ compare R5 and call related procedure
    MOV R1,R0		@then after any procedure call, move R0 to R1 for printing
-   CMP R5, #'-'
+   CMP R2, #'-'
    BL _subtract
    MOV R1,R0
-   CMP R5, #'*'
+   CMP R2, #'*'
    BL _multiply
    MOV R1,R0
-   CMP R5, #'M'
+   CMP R2, #'M'
    BL _M
    MOV R1,R0
 
@@ -64,18 +64,18 @@ _scanf:
     B   _exit           @ branch to exit procedure with no return
    
 _add:
-	add R0,R4,R6     @adding
+	add R0,R1,R3     @adding
 	MOV PC,LR
 _subtract:
-	sub R0,R4,R6     @subtracting
+	sub R0,R1,R3     @subtracting
 	MOV PC,LR
 _multiply:
-	mul R0,R4,R6     @multiplying
+	mul R0,R1,R3     @multiplying
 	MOV PC,LR
 _M:
-	CMP R4,R6
-	MOVGT R0,R2      @if R2 > R1 , move R2 to R0
-	MOVLT R0,R1
+	CMP R1,R3
+	MOVLT R0,R3      @if R2 > R1 , move R2 to R0
+	MOVGT R0,R1
 	MOV PC,LR
 	
 
