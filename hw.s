@@ -25,13 +25,13 @@ main:
   
     
    CMP R3, '+'		@ R3 is where the operation is saved from scanf
-   BEQ _add		@ compare R3 and call related procedure
+   BL _add		@ compare R3 and call related procedure
    CMP R3, '-'
-   BEQ _subtract
+   BL _subtract
    CMP R3, '*'
-   BEQ _multiply
+   BL _multiply
    CMP R3, 'M'
-   BEQ _M
+   BL _M
 
     
 _scanf:
