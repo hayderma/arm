@@ -9,12 +9,8 @@
     .func main
    
 main:
-    MOV R4,#3		@ LOOP_COUNTER (3 INPUTS)
-    loop_label:  	
-    BL      _scanf
-    sub     r4, r4, #1  
-    cmp     r4, #0  
-    bne     loop_label    @ for (i = 3; i != 0; i--)
+  BL _scanf
+  
    @ MOV R1,#5
     @MOV R2,#10
     LDR R0,=print_str   @ store string address in R0
