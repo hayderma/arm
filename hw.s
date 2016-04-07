@@ -74,7 +74,7 @@ _multiply:
 	MOV PC,LR
 _M:
 	CMP R1,R3
-	MOVLT R0,R3      @if R2 > R1 , move R2 to R0 (return value)
+	MOVLT R0,R3      @if R3 > R1 , move R3 to R0 (return value)
 	MOVGT R0,R1	@ else, move R1 to R0 (return value)
 	MOV PC,LR
 	
