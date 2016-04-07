@@ -41,7 +41,7 @@ main:
 _scanf:
     PUSH {LR}                @ store LR since scanf call overwrites
     SUB SP, SP, #4          @ make room on stack
-    
+    LDR R0, =format_str     @ R0 contains address of format string
     MOV R1, SP              @ move SP to R1 to store entry on stack
     BL scanf                @ call scanf
     LDR R0, [SP]            @ load value at SP into R0
@@ -84,6 +84,6 @@ _exit:
 	SWI 0               @ execute syscall
 
 .data
-
+format_str:     .asciz      "%d"
 read_char:      .ascii      " "
 print_str:  .asciz "The Result is : %d\n"
