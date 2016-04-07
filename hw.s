@@ -52,7 +52,7 @@ _scanf:
     MOV R7, #3              @ write syscall, 3
     MOV R0, #0              @ input stream from monitor, 0
     MOV R2, #1              @ read a single character
-    LDR R1, =read_char      @ store the character in data memory
+    
     SWI 0                   @ execute the system call
     LDR R0, [R1]            @ move the character to the return register
     AND R0, #0xFF           @ mask out all but the lowest 8 bits
@@ -85,5 +85,5 @@ _exit:
 
 .data
 format_str:     .asciz      "%d"
-read_char:      .ascii      " "
+
 print_str:  .asciz "The Result is : %d\n"
