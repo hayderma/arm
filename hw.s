@@ -10,7 +10,7 @@
    
 main:
   BL _scanf       
-  MOV R1,R0    @ Fist input number
+  MOV R1,R0    @ First input number
   BL _getchar  
   MOV R2,R0	@Operation char
   BL _scanf
@@ -24,8 +24,8 @@ main:
     
   
     
-   CMP R2,#'+'		@ R5 is where the operation is saved from scanf
-   BL _add		@ compare R5 and call related procedure
+   CMP R2,#'+'		@ R2 is where the operation is saved from scanf
+   BL _add		@ compare R2 and call related procedure
    MOV R1,R0		@then after any procedure call, move R0 to R1 for printing
    CMP R2, #'-'
    BL _subtract
