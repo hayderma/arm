@@ -81,10 +81,11 @@ _fact:
     MOV R5,R1
     MOV R6,R2
     SUB R1, R1,R2          @ n-m
+     BL _fact                @ compute fact(n-1)
     SUB R2,R2,#1
-    BL _fact                @ compute fact(n-1)
+   
     POP {R1}                @ restore input argument
-    MUL R0, R0, R1          @ compute fact(n-1)*n
+    add R0, R0, R1          @ compute fact(n-1)*n
     POP  {PC}               @ restore the stack pointer and return
  
 .data
