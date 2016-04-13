@@ -16,7 +16,7 @@ main:
     MOV R4, R0              @ store n in R4
     MOV R1, R0              @ pass n to factorial procedure
      BL  _scanf              @ branch to scan procedure with return
-    MOV R5, R0              @ store m in R4
+   
     MOV R2, R0              @ pass m to factorial procedure
     BL  _fact               @ branch to factorial procedure with return
     MOV R1, R4              @ pass n to printf procedure
@@ -79,9 +79,13 @@ _fact:
    CMP R2,#0 
    MOVEQ R0,#0
    POPEQ{PC}
+   MOV 
     PUSH {R1}               @ backup input argument value (n)
     PUSH {R2}               @backup input argument value(m)
-    SUB R1, R1, #1          @ decrement the input argument
+    MOV R5,R1
+    MOV R6,R2
+    SUB R1, R1,R2          @ n-m
+    SUB R2,R2,#1
     BL _fact                @ compute fact(n-1)
     POP {R1}                @ restore input argument
     MUL R0, R0, R1          @ compute fact(n-1)*n
