@@ -15,6 +15,9 @@ main:
     BL  _scanf              @ branch to scan procedure with return
     MOV R4, R0              @ store n in R4
     MOV R1, R0              @ pass n to factorial procedure
+     BL  _scanf              @ branch to scan procedure with return
+    MOV R5, R0              @ store m in R4
+    MOV R2, R0              @ pass m to factorial procedure
     BL  _fact               @ branch to factorial procedure with return
     MOV R1, R4              @ pass n to printf procedure
     MOV R2, R0              @ pass result to printf procedure
@@ -70,7 +73,14 @@ _fact:
     MOVEQ R0, #1            @ set return value to 1 if equal
     POPEQ {PC}              @ restore stack pointer and return if equal
    
-    PUSH {R1}               @ backup input argument value  
+   CMP R1,#0
+   MOVLT R0,#0
+   POPLT{PC}
+   CMP R2,#0 
+   MOVEQ R0,#0
+   POPEQ{PC}
+    PUSH {R1}               @ backup input argument value (n)
+    PUSH {R2}               @backup input argument value(m)
     SUB R1, R1, #1          @ decrement the input argument
     BL _fact                @ compute fact(n-1)
     POP {R1}                @ restore input argument
