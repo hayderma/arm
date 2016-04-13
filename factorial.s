@@ -1,10 +1,6 @@
 /******************************************************************************
 * @file factorial.s
-* @brief simple recursion example
-*
-* Simple example of recursion and stack management
-*
-* @author Christopher D. McMurrough
+* @Recursion
 ******************************************************************************/
  
     .global main
