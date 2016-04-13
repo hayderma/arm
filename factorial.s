@@ -75,7 +75,7 @@ _fact:
    CMP R2,#0 
    MOVEQ R0,#0
    POPEQ {PC}
-   MOV 
+   
     PUSH {R1}               @ backup input argument value (n)
     PUSH {R2}               @backup input argument value(m)
     MOV R5,R1
