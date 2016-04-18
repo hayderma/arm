@@ -81,7 +81,7 @@ _fact:
     MOV R5,R1
     MOV R6,R2
     SUB R1, R1,R2          @ n-m
-     BL _fact                @ compute fact(n-1)
+     BL _fact                @ call procedure for (n-m,m)
     SUB R2,R2,#1
    
     POP {R1}                @ restore input argument
