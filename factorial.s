@@ -83,6 +83,7 @@ _fact:
     SUB R1, R1,R2          @ n-m
      BL _fact                @ call procedure for (n-m,m)
     SUB R2,R2,#1
+    BL _fact                @call procedure for (n,m-1)
    
     POP {R1}                @ restore input argument
     add R0, R0, R1          @ compute fact(n-1)*n
