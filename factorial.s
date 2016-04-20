@@ -1,5 +1,7 @@
 /******************************************************************************
 * @file factorial.s
+* This program takes two int inputs, one is n , the other is m (as in the C code) and implements a
+*recursive functionality similar to that in the c code
 * @Recursion
 ******************************************************************************/
  
