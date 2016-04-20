@@ -78,8 +78,8 @@ _fact:
    MOVEQ R0,#0
    POPEQ {PC}
    
-    PUSH {R1}               @ backup input argument value (n)
-    PUSH {R2}               @backup input argument value(m)
+    PUSH {R1,R2}               @ backup input argument value (n) and (m)
+    
     MOV R5,R1
     MOV R6,R2
     SUB R1, R1,R2          @ n-m
@@ -87,7 +87,7 @@ _fact:
     SUB R2,R2,#1
     BL _fact                @call procedure for (n,m-1)
    
-    POP {R1}                @ restore input argument
+    POP {R1,R2}                @ restore input argument
     add R0, R0, R1          @ compute fact(n-1)*n
     POP  {PC}               @ restore the stack pointer and return
  
