@@ -95,5 +95,5 @@ _fact:
 number:         .word       0
 format_str:     .asciz      "%d"
 prompt_str:     .asciz      "Enter positive integers: "
-printf_str:     .asciz      "%d\n"
+printf_str:     .asciz      "For n=8, result=%d\n"
 exit_str:       .ascii      "Terminating program.\n"
