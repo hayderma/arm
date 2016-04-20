@@ -92,6 +92,6 @@ _fact:
 .data
 number:         .word       0
 format_str:     .asciz      "%d"
-prompt_str:     .asciz      "Enter a positive integer: "
+prompt_str:     .asciz      "Enter a positive integer then another: "
 printf_str:     .asciz      "%d! = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
