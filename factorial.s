@@ -94,6 +94,6 @@ _fact:
 .data
 number:         .word       0
 format_str:     .asciz      "%d"
-prompt_str:     .asciz      "Enter two positive integers : "
+prompt_str:     .asciz      "Enter two pos. integers: "
 printf_str:     .asciz      "For n=%d, result=%d\n"
 exit_str:       .ascii      "Terminating program.\n"
