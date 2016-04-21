@@ -84,6 +84,7 @@ _fact:
     SUB R1, R1,R2          @ n-m
      BL _fact                @ call procedure for (n-m,m)
      MOV R7,R0
+     MOV R1,R5
     SUB R2,R2,#1
     BL _fact                @call procedure for (n,m-1)
    
