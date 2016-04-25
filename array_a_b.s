@@ -1,31 +1,31 @@
 /******************************************************************************
-* @file array.s
-* @brief simple array declaration and iteration example
-*
-* Simple example of declaring a fixed-width array and traversing over the
-* elements for printing.
-*
-* @author Christopher D. McMurrough
+* @file array_a_b.s
+* @program_3
+* Arrays
 ******************************************************************************/
  
 .global main
 .func main
    
 main:
+    BL _scanf                   @ adding...calling scanf
+    MOV R8,R0                  @adding...storing n in R8
     MOV R0, #0              @ initialze index variable
 writeloop:
-    CMP R0, #100            @ check to see if we are done iterating
+    CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
+    ADD R9,R0,R8            @ADDING... R9=n+i
+    ADD R10,R0,#1           @ADDING... R10= i+1
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     STR R2, [R2]            @ write the address of a[i] to a[i]
-    ADD R0, R0, #1          @ increment index
+    ADD R0, R0, #2          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
     MOV R0, #0              @ initialze index variable
 readloop:
-    CMP R0, #100            @ check to see if we are done iterating
+    CMP R0, #20            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -45,6 +45,18 @@ readloop:
 readdone:
     B _exit                 @ exit if done
     
+_scanf:                     @adding ...
+    PUSH {LR}               @ store the return address
+    PUSH {R1}               @ backup regsiter value
+    LDR R0, =format_str     @ R0 contains address of format string
+    SUB SP, SP, #4          @ make room on stack
+    MOV R1, SP              @ move SP to R1 to store entry on stack
+    BL scanf                @ call scanf
+    LDR R0, [SP]            @ load value at SP into R0
+    ADD SP, SP, #4          @ remove value from stack
+    POP {R1}                @ restore register value
+    POP {PC}                @ restore the stack pointer and return
+    
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -63,6 +75,6 @@ _printf:
 .data
 
 .balign 4
-a:              .skip       400
+a:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
