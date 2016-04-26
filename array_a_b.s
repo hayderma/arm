@@ -76,7 +76,7 @@ _printf:
     POP {PC}                @ restore the stack pointer and return
    
 .data
-
+format_str:     .asciz      "%d"
 .balign 4
 a:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
