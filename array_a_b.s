@@ -60,19 +60,6 @@ _scanf:                     @adding ...
     POP {R1}                @ restore register value
     POP {PC}                @ restore the stack pointer and return
  
-_prompt:
-    PUSH {R1}               @ backup register value
-    PUSH {R2}               @ backup register value
-    PUSH {R7}               @ backup register value
-    MOV R7, #4              @ write syscall, 4
-    MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #26             @ print string length
-    LDR R1, =prompt_str     @ string at label prompt_str:
-    SWI 0                   @ execute syscall
-    POP {R7}                @ restore register value
-    POP {R2}                @ restore register value
-    POP {R1}                @ restore register value
-    MOV PC, LR              @ return
     
 _exit:  
     MOV R7, #4              @ write syscall, 4
@@ -91,7 +78,6 @@ _printf:
    
 .data
 format_str:     .asciz      "%d"
-prompt_str:     .asciz      "Enter a positive number: "
 .balign 4
 a:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
