@@ -8,8 +8,8 @@
 .func main
    
 main:
-    
-    MOV R8,#5                  @adding...storing n in R8
+    BL _scanf
+    MOV R8,R0                  @adding...storing n in R8
     MOV R0, #0              @ initialze index variable
 writeloop:
     CMP R0, #20            @ check to see if we are done iterating
@@ -54,7 +54,17 @@ readdone:
     
 
  
-    
+ _scanf:
+    PUSH {LR}               @ store the return address
+    PUSH {R1}               @ backup regsiter value
+    LDR R0, =format_str     @ R0 contains address of format string
+    SUB SP, SP, #4          @ make room on stack
+    MOV R1, SP              @ move SP to R1 to store entry on stack
+    BL scanf                @ call scanf
+    LDR R0, [SP]            @ load value at SP into R0
+    ADD SP, SP, #4          @ remove value from stack
+    POP {R1}                @ restore register value
+    POP {PC}                @ restore the stack pointer and return   
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -71,7 +81,7 @@ _printf:
     POP {PC}                @ restore the stack pointer and return
    
 .data
-
+format_str:     .asciz      "%d"
 .balign 4
 a:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
