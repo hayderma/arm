@@ -23,10 +23,11 @@ writeloop:
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     STR R9, [R2]            @ write the address of a[i] to a[i]
+    ADD R0, R0, #1          @ increment index
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     STR R11, [R2]            @ write the address of a[i] to a[i]
-    ADD R0, R0, #2          @ increment index
+    ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
     MOV R0, #0              @ initialze index variable
