@@ -95,6 +95,7 @@ _printf:
     POP {PC}                @ restore the stack pointer and return
    
 .data
+number:         .word       0
 format_str:     .asciz      "%d"
 prompt_str:     .asciz      "Enter a positive number: "
 .balign 4
