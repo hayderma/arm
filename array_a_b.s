@@ -22,10 +22,10 @@ writeloop:
     MUL R11,R11,R12         @ADDING... MULTIPLY R11 BY -1 (R11= -(n+i+1)
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    STR R2, [R9]            @ write the address of a[i] to a[i]
+    STR R9, [R2]            @ write the address of a[i] to a[i]
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    STR R2, [R11]            @ write the address of a[i] to a[i]
+    STR R11, [R2]            @ write the address of a[i] to a[i]
     ADD R0, R0, #2          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
