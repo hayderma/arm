@@ -93,8 +93,8 @@ _printf:
 format_str:     .asciz      "%d"
 
 .balign 4
-.balign 4
 a:              .skip       80
+.balign 4
 b:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
