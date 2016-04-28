@@ -52,7 +52,13 @@ readloop:
 readdone:
     B _exit                 @ exit if done
     
-
+ _sort_ascending:
+ 
+    MOV R0,#0
+     CMP R0, #20            @ check to see if we are done iterating
+    BEQ writedone           @ exit loop if done
+    LDR R3, =b              @ get address of a
+    
  
  _scanf:
     PUSH {LR}               @ store the return address
@@ -87,6 +93,8 @@ _printf:
 format_str:     .asciz      "%d"
 
 .balign 4
+.balign 4
 a:              .skip       80
+b:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
