@@ -54,10 +54,10 @@ readdone:
     
  _sort_ascending:
  
-    MOV R0,#0
+    BL writedone            @ reset counter (i)              
      CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
-    LDR R3, =b              @ get address of a
+    LDR R3, =b              @ get address of b
     
  
  _scanf:
