@@ -52,7 +52,7 @@ readloop:
 readdone:
     B _exit                 @ exit if done
     
- _sort_ascending:
+ _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
  
     BL writedone            @ reset counter (i)              
      CMP R0, #20            @ check to see if we are done iterating
