@@ -59,6 +59,30 @@ readdone:
     BEQ writedone           @ exit loop if done
     LDR R3, =b              @ get address of b
     
+    LDR R1, =a              @ get address of a
+    LDR R7, =b              @get address of b
+    LSL R2, R0, #2          @ multiply index*4 to get array offset for array A
+    LSL R8, R0, #2          @ multiply index*4 to get array offset for array B
+    ADD R2, R1, R2          @ R2 now has the element address for array A
+    ADD R8, R7, R8          @ R8 now has the element address for array B
+    LDR R1, [R2]            @ read the array at address 
+    MOV R9,R1               @ MOVE a[i] to R9 for comparsion with R10 (a[i+1]) later
+    LSL R2, R0, #2          @ multiply index*4 to get NEXT array offset for array A
+    ADD R2, R1, R2          @ R2 now has the NEXT element address for array A
+    LDR R1, [R2]            @ read the NEXT array element at address in array A
+    MOV R10,R1              @ MOVE a[i+1] to R10 for compasion with R9 (a[i])
+    PUSH {R0}               @ backup register before printf
+    PUSH {R1}               @ backup register before printf
+    PUSH {R2}               @ backup register before printf
+    MOV R2, R1              @ move array value to R2 for printf
+    MOV R1, R0              @ move array index to R1 for printf
+    BL  _printf             @ branch to print procedure with return
+    POP {R2}                @ restore register
+    POP {R1}                @ restore register
+    POP {R0}                @ restore register
+    ADD R0, R0, #1          @ increment index
+    B   readloop            @ branch to next loop iteratio
+    
  
  _scanf:
     PUSH {LR}               @ store the return address
