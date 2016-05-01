@@ -22,11 +22,11 @@ writeloop:
     MUL R11,R11,R12         @ADDING... MULTIPLY R11 BY -1 (R11= -(n+i+1)
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    STR R9, [R2]            @ write the address of a[i] to a[i]
+    STR R9, [R2]            @ write value to a[i]
     ADD R0, R0, #1          @ increment index
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    STR R11, [R2]            @ write the address of a[i] to a[i]
+    STR R11, [R2]           @ write  value to a[i+1]
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
@@ -71,6 +71,11 @@ readdone:
     ADD R2, R1, R2          @ R2 now has the NEXT element address for array A
     LDR R1, [R2]            @ read the NEXT array element at address in array A
     MOV R10,R1              @ MOVE a[i+1] to R10 for compasion with R9 (a[i])
+    CMP   R9, R10           @compare i and i+1 
+    MOVLE R11, R9           @if i < i+1 , MOVE i to R11 to write to array b[i]
+    MOVGT R11, R10          @if i > i+1, MOVE i+1 to R11 to write to array b[i]
+    STR R11, [R8]           @ write  smallest value stored in R11 to b[i]
+    
     PUSH {R0}               @ backup register before printf
     PUSH {R1}               @ backup register before printf
     PUSH {R2}               @ backup register before printf
