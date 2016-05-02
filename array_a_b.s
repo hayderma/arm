@@ -62,8 +62,6 @@ BL _sort_ascending         @Calling _sort_ascending
               
      CMP R0, #20            @ check to see if we are done iterating
      B _exit                 @ exit if done
-    LDR R3, =b              @ get address of b
-    
     LDR R1, =a              @ get address of a
     LDR R7, =b              @get address of b
     LSL R2, R0, #2          @ multiply index*4 to get array offset for array A
