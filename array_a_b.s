@@ -53,7 +53,6 @@ readloop:
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 readdone:
-    B _exit                 @ exit if done
     MOV R0,#0               @reset counter (i)
 
 BL _sort_ascending         @Calling _sort_ascending
@@ -62,7 +61,7 @@ BL _sort_ascending         @Calling _sort_ascending
  
               
      CMP R0, #20            @ check to see if we are done iterating
-    BEQ writedone           @ exit loop if done
+     B _exit                 @ exit if done
     LDR R3, =b              @ get address of b
     
     LDR R1, =a              @ get address of a
