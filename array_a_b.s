@@ -14,7 +14,9 @@ main:
     BL _scanf
     MOV R8,R0                  @storing n in R8
     MOV R0, #0              @ initialze index variable
-    BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
+    BL writeloop
+    BL readloop
+    
 writeloop:
     CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
@@ -55,7 +57,7 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     MOV R0,#0               @reset counter (i)
-    
+    BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
 
 
  
