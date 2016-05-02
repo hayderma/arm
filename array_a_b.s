@@ -55,7 +55,9 @@ readloop:
 readdone:
     B _exit                 @ exit if done
     MOV R0,#0               @reset counter (i)
-    
+
+BL _sort_ascending         @Calling _sort_ascending
+
  _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
  
               
