@@ -126,7 +126,7 @@ _printf_b:
    
 .data
 
-format_str:     .asciz      " enter n : %d"
+format_str:     .asciz      "%d"
 
 .balign 4
 a:              .skip       80
