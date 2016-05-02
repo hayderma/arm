@@ -59,7 +59,7 @@ readdone:
     MOV R0,#0               @reset counter (i)
     
 _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]              
-    CMP R0, #21            @ check to see if we are done iterating
+    CMP R0, #20            @ check to see if we are done iterating
     BEQ _exit              @ exit if done comparing and storing in b
     LDR R1, =a              @ get address of a
     LDR R7, =b              @get address of b
@@ -83,7 +83,7 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     PUSH {R1}               @ backup register before printf (value of b[i])
     MOV R2, R11             @ move array value to R2 for printf
     MOV R1, R8              @ move array index to R1 for printf
-    BL  _printf           @ branch to print procedure with return
+    BL  _printf_b           @ branch to print procedure with return
     POP {R1}                @ restore register
     POP {R2}                @ restore register
     POP {R0}                @ restore register
