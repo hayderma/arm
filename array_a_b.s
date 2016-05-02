@@ -69,6 +69,7 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     ADD R8, R7, R8          @ R8 now has the element address for array B
     LDR R1, [R2]            @ read the array at address 
     MOV R9,R1               @ MOVE a[i] to R9 for comparsion with R10 (a[i+1]) later
+    ADD R0, R0, #1          @ increment index
     LSL R2, R0, #2          @ multiply index*4 to get NEXT array offset for array A
     ADD R2, R1, R2          @ R2 now has the NEXT element address for array A
     LDR R1, [R2]            @ read the NEXT array element at address in array A
