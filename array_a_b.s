@@ -9,8 +9,8 @@
 * R0 is the (i) for array a, because i of a is incremented twice in the 
 *procedure in order to get the next element and comapre them
 *but, in b, we only increment once to write to array and read elements.
-* The _sort_ascending procedure is ready to copy and read, but still produces
-* a seg. err. 
+* The _sort_ascending procedure is ready to copy and read, but program
+* produces a seg. err. refusing to print array b, only printing a 
 ******************************************************************************/
  
 .global main
