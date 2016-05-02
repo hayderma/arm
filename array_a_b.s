@@ -54,7 +54,7 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     MOV R0,#0               @reset counter (i)
-    BL _sort_ascending         @ after reading a, call sort procedure to sort a, and print b
+BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
 
 
  
