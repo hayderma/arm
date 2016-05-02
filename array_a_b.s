@@ -56,11 +56,11 @@ readdone:
     MOV R0,#0               @reset counter (i)
     BL _sort_ascending         @ after reading a, call sort procedure to sort a, and print b
 
-_sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
+
  
-              
-     CMP R0, #20            @ check to see if we are done iterating
-     B _exit                 @ exit if done
+_sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]              
+    CMP R0, #20            @ check to see if we are done iterating
+    B _exit                 @ exit if done
     LDR R1, =a              @ get address of a
     LDR R7, =b              @get address of b
     LSL R2, R0, #2          @ multiply index*4 to get array offset for array A
