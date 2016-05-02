@@ -54,10 +54,9 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     MOV R0,#0               @reset counter (i)
+    BL _sort_ascending         @Calling _sort_ascending
 
-BL _sort_ascending         @Calling _sort_ascending
-
- _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
+_sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
  
               
      CMP R0, #20            @ check to see if we are done iterating
