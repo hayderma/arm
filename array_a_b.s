@@ -83,7 +83,7 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     PUSH {R1}               @ backup register before printf (value of b[i])
     MOV R2, R11             @ move array value to R2 for printf
     MOV R1, R8              @ move array index to R1 for printf
-    BL  _printf_b           @ branch to print procedure with return
+    BL  _printf           @ branch to print procedure with return
     POP {R1}                @ restore register
     POP {R2}                @ restore register
     POP {R0}                @ restore register
