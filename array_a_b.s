@@ -79,13 +79,13 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     STR R11, [R8]           @ write  smallest value stored in R11 to b[i]
     
     PUSH {R0}               @ backup register before printf
-    PUSH {R8}               @ backup register before printf (address of b[i])
-    PUSH {R9}               @ backup register before printf (value of b[i])
-    MOV R2, R1              @ move array value to R2 for printf
-    MOV R1, R0              @ move array index to R1 for printf
+    PUSH {R2}               @ backup register before printf (address of b[i])
+    PUSH {R1}               @ backup register before printf (value of b[i])
+    MOV R2, R9              @ move array value to R2 for printf
+    MOV R1, R8              @ move array index to R1 for printf
     BL  _printf_b           @ branch to print procedure with return
-    POP {R8}                @ restore register
-    POP {R9}                @ restore register
+    POP {R1}                @ restore register
+    POP {R2}                @ restore register
     POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
     B _sort_ascending       @ branch to next loop iteration
