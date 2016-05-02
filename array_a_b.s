@@ -1,6 +1,9 @@
 /******************************************************************************
 * @file array_a_b.s
 * @program_3
+* NOTE_1, readloop function read unsorted array a, _sort_ascending function will
+* sort elements of a, store them into b, and then print elements of b.
+*NOTE_2, _printf will print array a, _print_b will print array b
 * Arrays
 ******************************************************************************/
  
@@ -9,17 +12,17 @@
    
 main:
     BL _scanf
-    MOV R8,R0                  @adding...storing n in R8
+    MOV R8,R0                  @storing n in R8
     MOV R0, #0              @ initialze index variable
 writeloop:
     CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
-    ADD R9,R0,R8            @ADDING... R9=n+i
-    ADD R10,R0,#1           @ADDING... R10= i+1
-    ADD R11,R10,#1          @ADDING... R11= n+i+1
+    ADD R9,R0,R8            @ R9=n+i
+    ADD R10,R0,#1           @R10= i+1
+    ADD R11,R10,#1          @R11= n+i+1
     MOV R12,#-1
-    MUL R11,R11,R12         @ADDING... MULTIPLY R11 BY -1 (R11= -(n+i+1)
+    MUL R11,R11,R12         @MULTIPLY R11 BY -1 (R11= -(n+i+1)
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     STR R9, [R2]            @ write value to a[i]
@@ -51,10 +54,11 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     B _exit                 @ exit if done
+    MOV R0,#0               @reset counter (i)
     
  _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
  
-    BL writedone            @ reset counter (i)              
+              
      CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R3, =b              @ get address of b
@@ -77,16 +81,16 @@ readdone:
     STR R11, [R8]           @ write  smallest value stored in R11 to b[i]
     
     PUSH {R0}               @ backup register before printf
-    PUSH {R1}               @ backup register before printf
-    PUSH {R2}               @ backup register before printf
+    PUSH {R8}               @ backup register before printf (address of b[i])
+    PUSH {R9}               @ backup register before printf (value of b[i])
     MOV R2, R1              @ move array value to R2 for printf
     MOV R1, R0              @ move array index to R1 for printf
-    BL  _printf             @ branch to print procedure with return
-    POP {R2}                @ restore register
-    POP {R1}                @ restore register
+    BL  _printf_b           @ branch to print procedure with return
+    POP {R8}                @ restore register
+    POP {R9}                @ restore register
     POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
-    B   readloop            @ branch to next loop iteratio
+    B   _sort_ascending            @ branch to next loop iteration
     
  
  _scanf:
@@ -116,6 +120,12 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
+    
+_printf_b:
+    PUSH {LR}               @ store the return address
+    LDR R0, =printf_b_str     @ R0 contains formatted string address
+    BL printf               @ call printf
+    POP {PC}                @ restore the stack pointer and return
    
 .data
 
@@ -126,4 +136,5 @@ a:              .skip       80
 .balign 4
 b:              .skip       80
 printf_str:     .asciz      "a[%d] = %d\n"
+printf_b_str:   .asciz      "b[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
