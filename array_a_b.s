@@ -16,7 +16,7 @@ main:
     MOV R0, #0              @ initialze index variable
     BL writeloop
     BL readloop
-    
+    BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
 writeloop:
     CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
@@ -57,7 +57,7 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     MOV R0,#0               @reset counter (i)
-    BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
+    
 
 
  
