@@ -54,7 +54,7 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     MOV R0,#0               @reset counter (i)
-    BL _sort_ascending         @Calling _sort_ascending
+    BL _sort_ascending         @ after reading a, call sort procedure to sort a, and print b
 
 _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
  
@@ -88,7 +88,7 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     POP {R9}                @ restore register
     POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
-    B   _sort_ascending            @ branch to next loop iteration
+    B _sort_ascending       @ branch to next loop iteration
     
  
  _scanf:
