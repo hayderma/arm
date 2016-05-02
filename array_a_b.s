@@ -14,6 +14,7 @@ main:
     BL _scanf
     MOV R8,R0                  @storing n in R8
     MOV R0, #0              @ initialze index variable
+    
 writeloop:
     CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
@@ -54,7 +55,7 @@ readloop:
     B   readloop            @ branch to next loop iteration
 readdone:
     MOV R0,#0               @reset counter (i)
-BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
+    BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
 
 
  
@@ -77,7 +78,6 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     MOVLE R11, R9           @if i < i+1 , MOVE i to R11 to write to array b[i]
     MOVGT R11, R10          @if i > i+1, MOVE i+1 to R11 to write to array b[i]
     STR R11, [R8]           @ write  smallest value stored in R11 to b[i]
-    
     PUSH {R0}               @ backup register before printf
     PUSH {R2}               @ backup register before printf (address of b[i])
     PUSH {R1}               @ backup register before printf (value of b[i])
