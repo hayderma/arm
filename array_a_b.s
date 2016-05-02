@@ -14,9 +14,9 @@ main:
     BL _scanf
     MOV R8,R0                  @storing n in R8
     MOV R0, #0              @ initialze index variable
-    BL writeloop
-    BL readloop
-    BL _sort_ascending      @ after done reading a, call sort procedure to sort a, and print b
+    BL writeloop            @ call write function
+    BL readloop             @call read function (prints a)
+    BL _sort_ascending     @ after done printing a, call sort procedure to sort a, and print b
 writeloop:
     CMP R0, #20            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
@@ -58,9 +58,6 @@ readloop:
 readdone:
     MOV R0,#0               @reset counter (i)
     
-
-
- 
 _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]              
     CMP R0, #20            @ check to see if we are done iterating
     B _exit                 @ exit if done
@@ -93,7 +90,7 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
     B _sort_ascending       @ branch to next loop iteration
     
  
- _scanf:
+_scanf:
     PUSH {LR}               @ store the return address
     PUSH {R1}               @ backup regsiter value
     LDR R0, =format_str     @ R0 contains address of format string
@@ -129,7 +126,7 @@ _printf_b:
    
 .data
 
-format_str:     .asciz      "%d"
+format_str:     .asciz      " enter n : %d"
 
 .balign 4
 a:              .skip       80
