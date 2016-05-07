@@ -9,8 +9,6 @@
 main:
     
     MOV R0, #0              @ initialze index variable
-    BL _scanf
-    MOV R4,R3
     BL writeloop            @ call write function
     BL readloop             @call read function (prints a)
     
@@ -22,7 +20,8 @@ writeloop:
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    
+    BL _scanf
+    MOV R3,R4
     STR R4, [R2]            @ write input to a[i]
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
@@ -57,7 +56,7 @@ readdone:
     SUB SP, SP, #4          @ make room on stack
     MOV R1, SP              @ move SP to R1 to store entry on stack
     BL scanf                @ call scanf
-    LDR R3, [SP]            @ load value at SP into R0
+    LDR R4, [SP]            @ load value at SP into R0
     ADD SP, SP, #4          @ remove value from stack
     POP {R1}                @ restore register value
     POP {PC}                @ restore the stack pointer and return   
