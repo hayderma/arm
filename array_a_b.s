@@ -14,13 +14,14 @@ main:
     
 writeloop:
    
-    BL _scanf
-    MOV R4,R0
+    
     CMP R3, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R3, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
+    BL _scanf
+    MOV R4,R0
     STR R4, [R2]            @ write input to a[i]
     ADD R3, R3, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
