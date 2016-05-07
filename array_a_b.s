@@ -1,16 +1,6 @@
 /******************************************************************************
 * @file array_a_b.s
-* @program_3
-*                              --NOTES--
-* readloop function read unsorted array a, _sort_ascending function will
-* sort elements of a, store them into b, and then print elements of b.
-*_printf will print array a, _print_b will print array b
-* in the (_sort_ascending) procedure, R12 is the (i) for array b, while
-* R0 is the (i) for array a, because i of a is incremented twice in the 
-*procedure in order to get the next element and comapre them
-*but, in b, we only increment once to write to array and read elements.
-* The _sort_ascending procedure is ready to copy and read, but program
-* produces a seg. err. refusing to print array b, only printing a 
+* @program_final
 ******************************************************************************/
  
 .global main
