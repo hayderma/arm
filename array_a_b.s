@@ -7,52 +7,40 @@
 .func main
    
 main:
-    
-    MOV R9, #0              @ initialze index variable
-    MOV R10,#9
-    BL writeloop            @ call write function
-    BL readloop             @call read function (prints a)
-    
+    MOV R0, #0              @ initialze index variable
+    MOV R8,#5
 writeloop:
-   
-    
-    CMP R9, #10            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
-    LSL R2, R9, #2          @ multiply index*4 to get array offset
+    LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    
-    STR R10, [R2]            @ write input to a[i]
-    ADD R9, R9, #1          @ increment index
+    STR R5, [R2]            @ write the address of a[i] to a[i]
+    ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
-    MOV R9, #0              @ initialze index variable
+    MOV R0, #0              @ initialze index variable
 readloop:
-    CMP R9, #10            @ check to see if we are done iterating
+    CMP R0, #100            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
-    LSL R2, R9, #2          @ multiply index*4 to get array offset
+    LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     LDR R1, [R2]            @ read the array at address 
-    PUSH {R0,R9}               @ backup register before printf
+    PUSH {R0}               @ backup register before printf
     PUSH {R1}               @ backup register before printf
     PUSH {R2}               @ backup register before printf
     MOV R2, R1              @ move array value to R2 for printf
-    MOV R1, R9              @ move array index to R1 for printf
+    MOV R1, R0              @ move array index to R1 for printf
     BL  _printf             @ branch to print procedure with return
     POP {R2}                @ restore register
     POP {R1}                @ restore register
-    POP {R0,R9}                @ restore register
-    ADD R9, R9, #1          @ increment index
+    POP {R0}                @ restore register
+    ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 readdone:
-    MOV R9,#0               @reset counter (i)
+    B _exit                 @ exit if done
     
-
- 
- 
-    
- 
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -67,14 +55,11 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
-    
-
    
 .data
-
-
 
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
+   
