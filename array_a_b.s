@@ -22,9 +22,9 @@ main:
     MOV R0, #0              @ initialze index variable
     BL writeloop            @ call write function
     BL readloop             @call read function (prints a)
-    BL _sort_ascending     @ after done printing a, call sort procedure to sort a, and print b
+    
 writeloop:
-    CMP R0, #20            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
     ADD R9,R0,R8            @ R9=n+i
@@ -44,7 +44,7 @@ writeloop:
 writedone:
     MOV R0, #0              @ initialze index variable
 readloop:
-    CMP R0, #20            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -66,7 +66,7 @@ readdone:
     
 _sort_ascending:           @ function to read from array a, compare a[i] with a[i+1] and write to b[i]
     MOV R12,#0             @R12 is (i) for array b
-    CMP R0, #20            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ _exit              @ exit if done comparing and storing in b
     LDR R1, =a              @ get address of a
     LDR R7, =b              @get address of b
@@ -138,9 +138,9 @@ _printf_b:
 format_str:     .asciz      "%d"
 
 .balign 4
-a:              .skip       80
+a:              .skip       40
 .balign 4
-b:              .skip       80
+b:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
 printf_b_str:   .asciz      "b[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
