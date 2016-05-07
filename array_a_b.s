@@ -17,28 +17,22 @@
 .func main
    
 main:
-    BL _scanf
-    MOV R8,R0                  @storing n in R8
+    
     MOV R0, #0              @ initialze index variable
     BL writeloop            @ call write function
     BL readloop             @call read function (prints a)
     
 writeloop:
+   
+    
     CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
-    ADD R9,R0,R8            @ R9=n+i
-    ADD R10,R0,#1           @R10= i+1
-    ADD R11,R10,#1          @R11= n+i+1
-    MOV R12,#-1
-    MUL R11,R11,R12         @MULTIPLY R11 BY -1 (R11= -(n+i+1)
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    STR R9, [R2]            @ write value to a[i]
-    ADD R0, R0, #1          @ increment index
-    LSL R2, R0, #2          @ multiply index*4 to get array offset
-    ADD R2, R1, R2          @ R2 now has the element address
-    STR R11, [R2]           @ write  value to a[i+1]
+    BL _scanf
+    MOV R8,R3                  @storing entry value in R8
+    STR R8, [R2]            @ write the address of a[i] to a[i]
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
@@ -102,11 +96,11 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
 _scanf:
     PUSH {LR}               @ store the return address
     PUSH {R1}               @ backup regsiter value
-    LDR R0, =format_str     @ R0 contains address of format string
+    LDR R3, =format_str     @ R0 contains address of format string
     SUB SP, SP, #4          @ make room on stack
     MOV R1, SP              @ move SP to R1 to store entry on stack
     BL scanf                @ call scanf
-    LDR R0, [SP]            @ load value at SP into R0
+    LDR R3, [SP]            @ load value at SP into R0
     ADD SP, SP, #4          @ remove value from stack
     POP {R1}                @ restore register value
     POP {PC}                @ restore the stack pointer and return   
