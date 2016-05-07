@@ -9,8 +9,8 @@
 main:
     
     MOV R9, #0              @ initialze index variable
-    BL _scanf
-    MOV R10,R0
+    @BL _scanf
+    MOV R10,9
     BL writeloop            @ call write function
     BL readloop             @call read function (prints a)
     
