@@ -8,45 +8,45 @@
    
 main:
     
-    MOV R3, #0              @ initialze index variable
+    MOV R0, #0              @ initialze index variable
     BL writeloop            @ call write function
     BL readloop             @call read function (prints a)
     
 writeloop:
    
     
-    CMP R3, #10            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
-    LSL R2, R3, #2          @ multiply index*4 to get array offset
+    LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     BL _scanf
-    MOV R4,R0
+    MOV R4,R3
     STR R4, [R2]            @ write input to a[i]
-    ADD R3, R3, #1          @ increment index
+    ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
 writedone:
-    MOV R3, #0              @ initialze index variable
+    MOV R0, #0              @ initialze index variable
 readloop:
-    CMP R3, #10            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
-    LSL R2, R3, #2          @ multiply index*4 to get array offset
+    LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     LDR R1, [R2]            @ read the array at address 
-    PUSH {R3}               @ backup register before printf
+    PUSH {R0}               @ backup register before printf
     PUSH {R1}               @ backup register before printf
     PUSH {R2}               @ backup register before printf
     MOV R2, R1              @ move array value to R2 for printf
-    MOV R1, R3              @ move array index to R1 for printf
+    MOV R1, R0              @ move array index to R1 for printf
     BL  _printf             @ branch to print procedure with return
     POP {R2}                @ restore register
     POP {R1}                @ restore register
-    POP {R3}                @ restore register
-    ADD R3, R3, #1          @ increment index
+    POP {R0}                @ restore register
+    ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 readdone:
-    MOV R3,#0               @reset counter (i)
+    MOV R0,#0               @reset counter (i)
     
 
  _scanf:
@@ -56,7 +56,7 @@ readdone:
     SUB SP, SP, #4          @ make room on stack
     MOV R1, SP              @ move SP to R1 to store entry on stack
     BL scanf                @ call scanf
-    LDR R0, [SP]            @ load value at SP into R0
+    LDR R3, [SP]            @ load value at SP into R0
     ADD SP, SP, #4          @ remove value from stack
     POP {R1}                @ restore register value
     POP {PC}                @ restore the stack pointer and return   
