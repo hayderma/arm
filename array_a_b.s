@@ -9,6 +9,8 @@
 main:
     
     MOV R0, #0              @ initialze index variable
+    BL _scanf
+    MOV R4,R3
     BL writeloop            @ call write function
     BL readloop             @call read function (prints a)
     
@@ -20,8 +22,7 @@ writeloop:
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    BL _scanf
-    MOV R4,R3
+    
     STR R4, [R2]            @ write input to a[i]
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
