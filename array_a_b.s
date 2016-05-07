@@ -82,7 +82,7 @@ _printf:
    
 .data
 
-format_str:     .asciz      "%d"
+@format_str:     .asciz      "%d"
 
 .balign 4
 a:              .skip       40
