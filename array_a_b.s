@@ -110,11 +110,7 @@ _printf:
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
     
-_printf_b:
-    PUSH {LR}               @ store the return address
-    LDR R0, =printf_b_str     @ R0 contains formatted string address
-    BL printf               @ call printf
-    POP {PC}                @ restore the stack pointer and return
+
    
 .data
 
@@ -122,8 +118,5 @@ format_str:     .asciz      "%d"
 
 .balign 4
 a:              .skip       40
-.balign 4
-b:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-printf_b_str:   .asciz      "b[%d] = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
