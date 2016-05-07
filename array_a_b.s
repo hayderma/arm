@@ -96,7 +96,7 @@ _sort_ascending:           @ function to read from array a, compare a[i] with a[
 _scanf:
     PUSH {LR}               @ store the return address
     PUSH {R1}               @ backup regsiter value
-    LDR R3, =format_str     @ R0 contains address of format string
+    LDR R0, =format_str     @ R0 contains address of format string
     SUB SP, SP, #4          @ make room on stack
     MOV R1, SP              @ move SP to R1 to store entry on stack
     BL scanf                @ call scanf
