@@ -1,10 +1,8 @@
-.global main
-.func main
-   
-main:
-    MOV R0, #0              @ initialze index variable
-    BL writeloop
-    BL readloop
+.global  _start
+    
+_start:
+   MOV R0,#0
+	
 writeloop:
     CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
