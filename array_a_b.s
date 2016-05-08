@@ -6,6 +6,8 @@ main:
     MOV R0,#0
     BL writeloop
     BL readloop
+    MOV R0,#2
+    BL writeloop
     BL readloop
 	
 writeloop:
