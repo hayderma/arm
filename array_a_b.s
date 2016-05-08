@@ -76,4 +76,4 @@ _printf:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-exit_str:       .ascii      "Terminating program.\n"
+@exit_str:       .ascii      "Terminating program.\n"
