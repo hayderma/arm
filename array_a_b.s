@@ -54,7 +54,7 @@ readloop_2:
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 readdone:
-    B _exit                 @ exit if done
+    MOV R0,#0
     
 _exit:  
     MOV R7, #4              @ write syscall, 4
