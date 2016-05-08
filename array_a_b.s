@@ -104,7 +104,6 @@ _printf_max:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-prompt_str:     .asciz      "Type a number and press enter: "
 printf_min:     .asciz      "min = %d"
 printf_max:     .asciz      "max = %d"
 exit_str:       .ascii      "Terminating program.\n"
