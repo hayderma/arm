@@ -6,9 +6,13 @@ main:
     MOV R0,#0
     BL writeloop
     BL readloop
+    MOV R0,#0
     BL _max
+    MOV R0,#0
     BL _printf_max
+    MOV R0,#0
     BL _min
+    MOV R0,#0
     BL _printf_min
 	
 writeloop:
