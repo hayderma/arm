@@ -4,7 +4,7 @@
    
 main:
     MOV R0,#0
-    BL _prompt
+    
 	
 writeloop:
     CMP R0, #10            @ check to see if we are done iterating
@@ -71,13 +71,7 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
-_prompt:
-    MOV R7, #4              @ write syscall, 4
-    MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #31             @ print string length
-    LDR R1, =prompt_str     @ string at label prompt_str:
-    SWI 0                   @ execute syscall
-    MOV PC, LR              @ return   
+   
 .data
 
 .balign 4
