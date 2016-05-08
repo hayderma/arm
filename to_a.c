@@ -1,12 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+
 void main()
 {
     int a[10];
     int i;
     int e;
-    int max,min;
+
     for (i=0;i<10;i++)
     {
        scanf("%d",&e);
@@ -20,33 +23,55 @@ void main()
 
     }
 
-     for (i=0;i<10;i++)
+
+    int max(int b[10])
     {
-       if (a[i]> a[i+1]){
-        max = a[i];
-       }
-       else if (a[i]<a[i+1]){
-        max = a[i+1];
+        int max=b[0];
+        int i;
+     for (i=1;i<10;i++)
+    {
+       if (max<a[i]){
+        max=a[i];
        }
 
+    }
+    return max;
 
     }
 
-     for (i=0;i<10;i++)
+     int min(int b[10])
     {
-       if (a[i]< a[i+1]){
-        min = a[i];
-       }
-       else if (a[i]>a[i+1]){
-        min = a[i+1];
+        int min=b[0];
+        int i;
+     for (i=1;i<10;i++)
+    {
+       if (min>a[i]){
+        min=a[i];
        }
 
+    }
+    return min;
 
     }
 
-    printf("Max = %d\n",max);
-    printf("Min = %d\n",min);
+     int sum(int b[10])
+    {
+
+        int i,s=0;
+     for (i=0;i<10;i++)
+    {
+       s=s+a[i];
+
+    }
+    return s;
+
+    }
 
 
+
+    printf("Max = %d\n",max(a));
+    printf("Min = %d\n",min(a));
+    printf("Sum = %d\n\n",sum(a));
+    printf("Terminating Program.\n");
 
 }
