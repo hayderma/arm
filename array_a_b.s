@@ -56,7 +56,7 @@ _max:
     MOVGT R7,R8
     MOV R1,R7		    @ended here
     ADD R0, R0, #1          @ increment index
-    B   readloop            @ branch to next loop iteration
+    B   _max            @ branch to next loop iteration
 _mini:
      CMP R0, #10            @ check to see if we are done iterating
     BEQ _printf_min         @ exit loop if done
@@ -73,7 +73,7 @@ _mini:
     MOVGT R7,R9
     MOV R1,R7		    @ended here
     ADD R0, R0, #1          @ increment index
-    B   readloop            @ branch to next loop iteration
+    B   _min            @ branch to next loop iteration
 
 _exit:  
     MOV R7, #4              @ write syscall, 4
