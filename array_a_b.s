@@ -11,9 +11,9 @@ main:
     MOV R0,#0
     BL _printf_max
     MOV R0,#0
-    BL _min
+    BL _mini
     MOV R0,#0
-    BL _printf_min
+    BL _printf_mini
 	
 writeloop:
     CMP R0, #10            @ check to see if we are done iterating
