@@ -56,14 +56,14 @@ readloop_2:
 readdone:
     MOV R0,#0
     
-/*_exit:  
+_exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
     MOV R2, #21             @ print string length
     LDR R1, =exit_str       @ string at label exit_str:
     SWI 0                   @ execute syscall
     MOV R7, #1              @ terminate syscall, 1
-    SWI 0 */                   @ execute syscall
+    SWI 0                   @ execute syscall
        
 _printf:
     PUSH {LR}               @ store the return address
@@ -76,4 +76,4 @@ _printf:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-@exit_str:       .ascii      "Terminating program.\n"
+exit_str:       .ascii      "Terminating program.\n"
