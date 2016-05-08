@@ -42,7 +42,7 @@ readdone:
 
 _mini:
      CMP R0, #10            @ check to see if we are done iterating
-    BEQ _exit            @ exit loop if done
+    BEQ _printf_min         @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
@@ -55,15 +55,6 @@ _mini:
     MOVLE R7,R9
     MOVGT R7,R8
     MOV R1,R7		    @ended here
-    PUSH {R0}               @ backup register before printf
-    PUSH {R1}               @ backup register before printf
-    PUSH {R2}               @ backup register before printf
-    MOV R2, R1              @ move array value to R2 for printf
-    MOV R1, R0              @ move array index to R1 for printf
-    BL  _printf             @ branch to print procedure with return
-    POP {R2}                @ restore register
-    POP {R1}                @ restore register
-    POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 
@@ -82,11 +73,22 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
-   
+_printf_min:
+    PUSH {LR}               @ store the return address
+    LDR R0, =printf_min     @ R0 contains formatted string address
+    BL printf               @ call printf
+    POP {PC}                @ restore the stack pointer and return
+_printf_max:
+    PUSH {LR}               @ store the return address
+    LDR R0, =printf_max     @ R0 contains formatted string address
+    BL printf               @ call printf
+    POP {PC}                @ restore the stack pointer and return
 .data
 
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
 prompt_str:     .asciz      "Type a number and press enter: "
+printf_min:     .asciz      "min = %d"
+printf_max:     .asciz      "max = %d"
 exit_str:       .ascii      "Terminating program.\n"
