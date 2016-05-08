@@ -7,7 +7,7 @@ main:
     
 	
 writeloop:
-    CMP R0, #10            @ check to see if we are done iterating
+    CMP R0, #11            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -36,9 +36,13 @@ readloop:
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
     
-readloop_2:
+
+readdone:
+    MOV R0,#0
+
+_mini:
     CMP R0, #10            @ check to see if we are done iterating
-    BEQ writedone            @ exit loop if done
+    BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
@@ -54,9 +58,8 @@ readloop_2:
     POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
-readdone:
-    MOV R0,#0
-    
+
+
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
