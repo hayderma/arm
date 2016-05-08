@@ -57,23 +57,7 @@ _max:
     MOV R1,R7		    @ended here
     ADD R0, R0, #1          @ increment index
     B   _max            @ branch to next loop iteration
-_mini:
-     CMP R0, #9            @ check to see if we are done iterating
-    BEQ _printf_min         @ exit loop if done
-    LDR R1, =a              @ get address of a
-    LSL R2, R0, #2          @ multiply index*4 to get array offset
-    ADD R2, R1, R2          @ R2 now has the element address
-    LDR R9, [R2]            @ read the array at address 
-    ADD R10,R0,#1
-    LSL R2, R10, #2          @ multiply index*4 to get array offset
-    ADD R2, R1, R2          @ R2 now has the element address
-    LDR R8,[R2]
-    CMP R8,R9
-    MOVLE R7,R8
-    MOVGT R7,R9
-    MOV R1,R7		    @ended here
-    ADD R0, R0, #1          @ increment index
-    B   _mini            @ branch to next loop iteration
+
 
 _exit:  
     MOV R7, #4              @ write syscall, 4
