@@ -4,12 +4,7 @@
    
 main:
     MOV R0,#0
-    BL writeloop
-    BL readloop
-    MOV R0,#0
-    BL _max
-    MOV R0,#0
-    BL _printf_max
+   
    
 	
 writeloop:
@@ -66,6 +61,7 @@ _max:
 
 
 
+
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -80,11 +76,7 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
-_printf_min:
-    PUSH {LR}               @ store the return address
-    LDR R0, =printf_min     @ R0 contains formatted string address
-    BL printf               @ call printf
-    POP {PC}                @ restore the stack pointer and return
+
 _printf_max:
     PUSH {LR}               @ store the return address
     LDR R0, =printf_max     @ R0 contains formatted string address
@@ -95,6 +87,5 @@ _printf_max:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-printf_min:     .asciz      "min = %d"
 printf_max:     .asciz      "max = %d"
 exit_str:       .ascii      "Terminating program.\n"
