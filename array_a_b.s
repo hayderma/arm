@@ -41,7 +41,7 @@ readdone:
     MOV R0,#0
 
 _max:
-     CMP R0, #10            @ check to see if we are done iterating
+     CMP R0, #9            @ check to see if we are done iterating
     BEQ _printf_max         @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -58,7 +58,7 @@ _max:
     ADD R0, R0, #1          @ increment index
     B   _max            @ branch to next loop iteration
 _mini:
-     CMP R0, #10            @ check to see if we are done iterating
+     CMP R0, #9            @ check to see if we are done iterating
     BEQ _printf_min         @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
