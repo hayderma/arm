@@ -4,11 +4,6 @@
    
 main:
     MOV R0,#0
-    BL writeloop
-    BL readloop
-    MOV R0,#2
-    BL writeloop
-    BL readloop
 	
 writeloop:
     CMP R0, #10            @ check to see if we are done iterating
@@ -21,6 +16,25 @@ writeloop:
     B   writeloop           @ branch to next loop iteration
 writedone:
     MOV R0, #0              @ initialze index variable
+readloop:
+    CMP R0, #10            @ check to see if we are done iterating
+    BEQ readdone            @ exit loop if done
+    LDR R1, =a              @ get address of a
+    LSL R2, R0, #2          @ multiply index*4 to get array offset
+    ADD R2, R1, R2          @ R2 now has the element address
+    LDR R1, [R2]            @ read the array at address 
+    PUSH {R0}               @ backup register before printf
+    PUSH {R1}               @ backup register before printf
+    PUSH {R2}               @ backup register before printf
+    MOV R2, R1              @ move array value to R2 for printf
+    MOV R1, R0              @ move array index to R1 for printf
+    BL  _printf             @ branch to print procedure with return
+    POP {R2}                @ restore register
+    POP {R1}                @ restore register
+    POP {R0}                @ restore register
+    ADD R0, R0, #1          @ increment index
+    B   readloop            @ branch to next loop iteration
+    
 readloop:
     CMP R0, #10            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
