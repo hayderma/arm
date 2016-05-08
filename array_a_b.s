@@ -6,6 +6,7 @@ main:
     MOV R0,#0
     BL writeloop
     BL readloop
+    BL readloop
 	
 writeloop:
     CMP R0, #10            @ check to see if we are done iterating
