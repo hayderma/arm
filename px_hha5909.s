@@ -2,7 +2,7 @@
 *@file final.s
 *Author : Hayder Mohammed Ali
 *Min,max,sum,array_print
-* L's represent labels (or functions to go to)
+* L's = labels
 ************************************/
 
 	
