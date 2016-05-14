@@ -42,7 +42,7 @@ public class Main_Frame extends Application {
 
         start.setText("Start");
 
-        Image exit_door = new Image("file:C:\\Users\\Aero\\Pictures\\FX\\vector-icons_05-128 (2).png");
+        Image exit_door = new Image("file:C:\\Users\\pc\\Pictures\\FX\\vector-icons_05-128 (2).png");
     
         
 
